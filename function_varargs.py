@@ -43,4 +43,3 @@ func3(2, 1)
 func3(c=11, a=7)
 #可变参数
 def func(a, b, *c, **d):
-
