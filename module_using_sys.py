@@ -1,0 +1,15 @@
+import os
+
+print('The command line arguments are:')
+for i in os.listdir():
+    print(i)
+
+# 案例
+import sys
+print('The command line arguments are:')
+for i in sys.argv:
+    print(i)
+print('\n\nThe PYTHONPATH is', sys.path, '\n')
+
+from math import sqrt
+print('Square root of 16 is', sqrt(16))
