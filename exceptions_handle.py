@@ -16,4 +16,5 @@ except EOFError:
 except KeyboardInterrupt:
     print('You cancelled the operation.')
 else:
+    # 将在没有异常发生时执行
     print('You entered {}'.format(text))
