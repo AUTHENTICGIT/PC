@@ -24,6 +24,7 @@ class ShortInputException(Exception):
 try:
     text = input('Enter something --> ')
     if len(text) < 3:
+        # 通过raise+派生类抛出异常的对象
         raise ShortInputException(len(text), 3)
 except EOFError:
 # EOFError意味着它发现了一个不期望的文件尾（文件尾是由Ctrl-d引起的）
