@@ -5,8 +5,8 @@ import jieba
 import pandas
 import numpy
 
-request1 = urllib.request.urlopen("https://movie.douban.com/cinema/nowplaying/chengdu/")
-html_data1 = request1.read().decode('utf-8')
+response1 = urllib.request.urlopen("https://movie.douban.com/cinema/nowplaying/chengdu/")
+html_data1 = response1.read().decode('utf-8')
 
 soup1 = BeautifulSoup(html_data1, 'html.parser')
 
@@ -22,8 +22,8 @@ for item in nowplaying_movie_list:
     nowplaying_dict['name'] = item['data-title']
     nowplaying_list.append(nowplaying_dict)
 
-request2 = urllib.request.urlopen('https://movie.douban.com/subject/' + nowplaying_list[0]['id'] + '/comments?')
-html_data2 = request2.read().decode('utf-8')
+response2 = urllib.request.urlopen('https://movie.douban.com/subject/' + nowplaying_list[0]['id'] + '/comments?')
+html_data2 = response2.read().decode('utf-8')
 soup2 = BeautifulSoup(html_data2, 'html.parser')
 comment_div_list = soup2.find_all('div', class_ = 'comment')
 
