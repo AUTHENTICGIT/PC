@@ -3,11 +3,14 @@ from bs4 import BeautifulSoup
 import re
 from lxml import etree
 
+# 获得贴吧地址，并返回
 def getHomeLink(keyword):
     url = 'http://tieba.baidu.com/f?kw=' + urllib.parse.quote(keyword)
     return url
 
-def getLinkList(inputlink):
+# 获得所有帖子地址列表，返回第一个帖子地址
+def getLinkList(keyword):
+    inputlink = getHomeLink(keyword)
     response = urllib.request.urlopen(inputlink)
     html = response.read().decode('utf-8')
     soup = BeautifulSoup(html, 'html.parser')
@@ -22,9 +25,14 @@ def getLinkList(inputlink):
         item = re.findall(r'/p/\d+', str(href))
         href_list.append(item[0])
     # print(href_list)
+    # url = 'http://tieba.baidu.com' + href_list[0]
+    title_list = []
+    for href in homepage_titles:
+        item = re.findall(r'<a.*? title="(.*?)".*?>.*?</a>', str(href))
+        title_list.append(item[0])
+    return(title_list, href_list)
 
-    url = 'http://tieba.baidu.com' + href_list[0]
-
+# 获得每层内容
 def getContent(url):
     try:
         response = urllib.request.urlopen(url)
@@ -39,3 +47,15 @@ def getContent(url):
 def main():
     try:
         keyword = input('->请输入一个正确的贴吧名称：')
+        title, title_list = getLinkList(keyword)
+        for i in range(20):
+            name = title[i]
+            url = 'http://tieba.baidu.com' + title_list[i]
+            print(name, url)
+            # getContent(url)
+        input()
+    except KeyboardInterrupt as reason:
+        print('程序结束！')
+
+if __name__ == "__main__":
+    main()
