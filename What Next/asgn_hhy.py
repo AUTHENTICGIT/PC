@@ -39,8 +39,13 @@ def getContent(url):
         html = response.read().decode('utf-8')
         soup = BeautifulSoup(html, 'html.parser')
         # print(soup)
-        page_contents_list = soup.find_all('div', {"class": re.compile("(d_post_content j_d_post_content )|(d_post_content j_d_post_content  clearfix)")})
-        print(page_contents_list)
+        page_content_list = soup.find_all('div', {"class": re.compile("(d_post_content j_d_post_content )|(d_post_content j_d_post_content  clearfix)")})
+        print(page_content_list)
+        content_list = []
+        for item in page_content_list:
+            content = re.findall(r'<div class="d_post_content j_d_post_content clearfix".*>(.*)</div>', item)
+            content_list.append(content)
+        print(content_list)
     except UnicodeEncodeError as reason:
         print('遇到非法内容，可能含有未能识别编码！程序结束！')
 
@@ -52,8 +57,7 @@ def main():
             name = title[i]
             url = 'http://tieba.baidu.com' + title_list[i]
             print(name, url)
-            # getContent(url)
-        input()
+        getContent('http://tieba.baidu.com' + title_list[0])
     except KeyboardInterrupt as reason:
         print('程序结束！')
 
