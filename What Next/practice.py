@@ -1,30 +1,38 @@
-# import urllib.request
-# import re
+# # import urllib.request
+# # import re
+# #
+# # # 全部PNG
+# # request = urllib.request.urlopen('http://www.baidu.com')
+# # resource = request.read().decode()  # read获取的类型为bytes，用encode()解码成str
+# # print(re.findall('http://.+\.png' ,resource))
 #
-# # 全部PNG
-# request = urllib.request.urlopen('http://www.baidu.com')
-# resource = request.read().decode()  # read获取的类型为bytes，用encode()解码成str
-# print(re.findall('http://.+\.png' ,resource))
+# from selenium import webdriver
+# import time
+# from bs4 import BeautifulSoup
+#
+# # # 用IEDriver方式打开wds页面
+# # browser = webdriver.Ie()
+# # browser.get("https://wds.modian.com/ranking_list?pro_id=5901")
+#
+# driver = webdriver.Chrome()     # 用chrome浏览器打开
+# driver.get('https://wds.modian.com/ranking_list?pro_id=5901')       # 打开wds页面
+# time.sleep(2)       # 让操作稍微停一下
+#
+# # 定义一个函数，实现将滚轮滑到页面最下方的功能，每5s下移一次，一共下移10次
+# def execute_times(times):
+#     for i in range(times + 1):
+#         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+#         time.sleep(2)
+# execute_times(2)
+#
+# html=driver.page_source
+# print(html)
 
-from selenium import webdriver
-import time
+import urllib.request
 from bs4 import BeautifulSoup
+import re
 
-# # 用IEDriver方式打开wds页面
-# browser = webdriver.Ie()
-# browser.get("https://wds.modian.com/ranking_list?pro_id=5901")
 
-driver = webdriver.Chrome()     # 用chrome浏览器打开
-driver.get('https://wds.modian.com/ranking_list?pro_id=5901')       # 打开wds页面
-time.sleep(2)       # 让操作稍微停一下
+text = '<div class="d_post_content j_d_post_content clearfix" id="post_content_109026126568"> <div class="post_bubble_top" style="background:url(http://tb1.bdstatic.com/tb/cms/post/bubble/xingni_1.png);height:35px;"></div><div class="post_bubble_middle" style="background:url(http://tb1.bdstatic.com/tb/cms/post/bubble/xingni_2.png)">吧友们好：<br/>百度贴吧今日已开启昵称修改功能，每90日可免费修改昵称一次，贴吧昵称任具有唯一性，希望大家都能获得自己喜欢的昵称<br/>修改昵称请使用文明用语且不具有误导性<br/>凡使用恶意昵称者，（包括但不限于对成员、吧友、粉丝群体等不友好ID）”<br/>本吧将对该昵称及贴吧账号进行永久封禁并加入黑名单<br/><br/><br/>禁止如图所示无意义刷表情，违规将被封禁。<br/><img class="BDE_Image" height="134" pic_type="0" src="http://imgsrc.baidu.com/forum/w%3D580/sign=d9fb7d543cd3d539c13d0fcb0a86e927/78a1b499a9014c087e17750f007b02087af4f4f5.jpg" width="500"/></div><div class="post_bubble_bottom" style="background:url(http://tb1.bdstatic.com/tb/cms/post/bubble/xingni_3.png);height:67px;"></div></div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026156168"> <img changedsize="false" class="BDE_Smiley" height="30" src="http://static.tieba.baidu.com/tb/editor/images/client/image_emoticon25.png" width="30"/></div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026169904">            怎么改?</div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026186084"> <img changedsize="false" class="BDE_Smiley" height="30" src="http://static.tieba.baidu.com/tb/editor/images/client/image_emoticon25.png" width="30"/></div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026195186">            姿次</div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026196797">            你开始了？</div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026207084"> <img changedsize="false" class="BDE_Smiley" height="30" src="http://static.tieba.baidu.com/tb/editor/images/client/image_emoticon25.png" width="30"/></div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026208650"> <img changedsize="false" class="BDE_Smiley" height="30" src="http://static.tieba.baidu.com/tb/editor/images/client/image_emoticon16.png" width="30"/>已改好</div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026210044">            啊</div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026214343"> <img changedsize="false" class="BDE_Smiley" height="30" src="http://static.tieba.baidu.com/tb/editor/images/client/image_emoticon25.png" width="30"/></div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026223961"> <div class="post_bubble_top" style="background:url(http://tb1.bdstatic.com/tb/cms/post/bubble/tuhao_1.png);height:37px;"></div><div class="post_bubble_middle" style="background:url(http://tb1.bdstatic.com/tb/cms/post/bubble/tuhao_2.png)">6楼这就来送人头了<img changedsize="false" class="BDE_Smiley" height="30" src="http://static.tieba.baidu.com/tb/editor/images/client/image_emoticon25.png" width="30"/></div><div class="post_bubble_bottom" style="background:url(http://tb1.bdstatic.com/tb/cms/post/bubble/tuhao_3.png);height:42px;"></div></div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026229729">            那不开个刷图贴？</div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026230419">            请举例说明<img changedsize="false" class="BDE_Smiley" height="30" src="http://static.tieba.baidu.com/tb/editor/images/client/image_emoticon25.png" width="30"/></div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026232565"> <div class="post_bubble_top" style="background:url(http://tb1.bdstatic.com/tb/cms/post/bubble/tuhao_1.png);height:37px;"></div><div class="post_bubble_middle" style="background:url(http://tb1.bdstatic.com/tb/cms/post/bubble/tuhao_2.png)">打死我也不改<img changedsize="false" class="BDE_Smiley" height="30" src="http://static.tieba.baidu.com/tb/editor/images/client/image_emoticon16.png" width="30"/><img changedsize="false" class="BDE_Smiley" height="30" src="http://static.tieba.baidu.com/tb/editor/images/client/image_emoticon16.png" width="30"/><img changedsize="false" class="BDE_Smiley" height="30" src="http://static.tieba.baidu.com/tb/editor/images/client/image_emoticon16.png" width="30"/></div><div class="post_bubble_bottom" style="background:url(http://tb1.bdstatic.com/tb/cms/post/bubble/tuhao_3.png);height:42px;"></div></div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026232725">            怎么改？大佬给份教程呗<img changedsize="false" class="BDE_Smiley" height="35" src="http://tb2.bdstatic.com/tb/editor/images/client/image_emoticon16.png" width="35"/></div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026233349"> <img class="BDE_Image" height="221" size="9064" src="http://imgsrc.baidu.com/forum/w%3D580/sign=04bb3dd9f1f2b211e42e8546fa816511/f35cfed3572c11dfbd6fe489692762d0f603c267.jpg" width="222"/></div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026237827"> <div class="post_bubble_top" style="background:url(http://tb1.bdstatic.com/tb/cms/post/bubble/caoshangyingfei_1.png);height:61px;"></div><div class="post_bubble_middle" style="background:url(http://tb1.bdstatic.com/tb/cms/post/bubble/caoshangyingfei_2.png)">后排嗨怕<img changedsize="false" class="BDE_Smiley" height="30" src="http://static.tieba.baidu.com/tb/editor/images/client/image_emoticon25.png" width="30"/></div><div class="post_bubble_bottom" style="background:url(http://tb1.bdstatic.com/tb/cms/post/bubble/caoshangyingfei_3.png);height:58px;"></div></div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026242851">            我算吗   要是算的话我就改<img changedsize="false" class="BDE_Smiley" height="30" src="http://static.tieba.baidu.com/tb/editor/images/client/image_emoticon28.png" width="30"/></div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026247007">            怎样算恶意昵称<img changedsize="false" class="BDE_Smiley" height="30" src="http://static.tieba.baidu.com/tb/editor/images/client/image_emoticon25.png" width="30"/></div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026249139">            张热不改个发发相关？</div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026251677"> <img class="BDE_Image" height="30" pic_type="1" src="https://gsp0.baidu.com/5aAHeD3nKhI2p27j8IqW0jdnxx1xbK/tb/editor/images/client/image_emoticon25.png" width="30"/>怎么改？是不是类似刷积分的形势发帖？？？</div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026252225">            昨天以来，常去的吧人都不认识了<img changedsize="false" class="BDE_Smiley" height="30" src="http://static.tieba.baidu.com/tb/editor/images/client/image_emoticon33.png" width="30"/></div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026258358"> <img class="BDE_Smiley" height="30" pic_type="1" src="http://tb2.bdstatic.com/tb/editor/images/face/i_f25.png?t=20140803" width="30"/></div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026259682">            改了还能退回来吗？<img changedsize="false" class="BDE_Smiley" height="30" src="http://static.tieba.baidu.com/tb/editor/images/client/image_emoticon15.png" width="30"/></div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026263606"> <img class="BDE_Smiley" height="30" pic_type="1" src="http://tb2.bdstatic.com/tb/editor/images/face/i_f25.png?t=20140803" width="30"/>都改完了</div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026271802">            6楼</div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026275922"> <div class="post_bubble_top" style="background:url(http://tb1.bdstatic.com/tb/cms/post/bubble/xingni_1.png);height:35px;"></div><div class="post_bubble_middle" style="background:url(http://tb1.bdstatic.com/tb/cms/post/bubble/xingni_2.png)">已经有发现涉及成员的不雅id，至少循环90天起</div><div class="post_bubble_bottom" style="background:url(http://tb1.bdstatic.com/tb/cms/post/bubble/xingni_3.png);height:67px;"></div></div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026293392">            就是这种<img changedsize="false" class="BDE_Smiley" height="30" src="http://static.tieba.baidu.com/tb/editor/images/client/image_emoticon6.png" width="30"/><br/><img class="BDE_Image" height="600" size="18496" src="http://imgsrc.baidu.com/forum/w%3D580/sign=8977b52e40ed2e73fce98624b700a16d/3547711ed21b0ef4a4d8c2f4d7c451da80cb3ee9.jpg" width="338"/><br/><img class="BDE_Image" height="600" size="27062" src="http://imgsrc.baidu.com/forum/w%3D580/sign=b5d7480d53ee3d6d22c687c373176d41/92ca74f0f736afc39ddb64cfb919ebc4b54512ce.jpg" width="338"/></div>, <div class="d_post_content j_d_post_content clearfix" id="post_content_109026294902">            好帖建议加精<img changedsize="false" class="BDE_Smiley" height="30" src="http://static.tieba.baidu.com/tb/editor/images/client/image_emoticon13.png" width="30"/><img changedsize="false" class="BDE_Smiley" height="30" src="http://static.tieba.baidu.com/tb/editor/images/client/image_emoticon13.png" width="30"/></div>'
 
-# 定义一个函数，实现将滚轮滑到页面最下方的功能，每5s下移一次，一共下移10次
-def execute_times(times):
-    for i in range(times + 1):
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        time.sleep(2)
-execute_times(2)
-
-html=driver.page_source
-print(html)
-
+print(re.findall(r'<div class="d_post_content j_d_post_content clearfix".*>(.*)</div>', text))
