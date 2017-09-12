@@ -17,12 +17,32 @@ def getUserList(id, num):
     user = r.text
     user = eval(user)   # 返回的数据实际是str类型，要转换为字典类型
     user_list = user['data']
-    print(user_list)
+    final_list = []
+    for user in user_list:
+        item = tuple(user.values())
+        final_list.append(item)
+    return final_list
+
+# 存入数据库
+def insert_by_many(table):
+    conn = pymysql.Connect(host='localhost', user='root', passwd='', db='wds', charset='utf8') # 建立连接
+    cur = conn.cursor() # 获取游标
+    try:
+        sql = "INSERT INTO userlist VALUES('%s', '%s', '%s', '%s', '%s')"
+        # 批量插入
+        cur.executemany(sql % table)    # table是list里放的tuple
+        conn.commit()
+    except Exception as e:
+        print(e)
+        conn.rollback()
+    print('[insert_by_many executemany] total:', len(table))
+    cur.close()
+    conn.close()
 
 def main():
     url = 'https://wds.modian.com/ranking_list?pro_id=6195'
     pro_id = 6195
-    num = int(input('Enter Numbers:'))
+    num = int(input('Enter Numbers: '))
     getUserList(pro_id, num)
 
 if __name__ == "__main__":
