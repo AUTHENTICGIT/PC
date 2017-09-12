@@ -43,7 +43,8 @@ def main():
     url = 'https://wds.modian.com/ranking_list?pro_id=6195'
     pro_id = 6195
     num = int(input('Enter Numbers: '))
-    getUserList(pro_id, num)
+    userlist = getUserList(pro_id, num)
+    insert_by_many(userlist)
 
 if __name__ == "__main__":
     main()
