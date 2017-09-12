@@ -44,7 +44,6 @@ conn.commit()
 cur.close()
 conn.close()
 
-
 dic = {'user_id': '1442771', 'total_back_amount': 37867.77, 'nickname': '红绳会家酱油的', 'icon': 'https:\\/\\/u.moimg.net\\/ico\\/1442771_1499254858.jpg', 'icon_default': 'https:\\/\\/s.moimg.net\\/new_wds\\/images\\/default-avatar.png'}
 print(dic.values())
 print(type(dic.values()))
