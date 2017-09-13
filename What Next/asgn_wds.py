@@ -15,12 +15,14 @@ def getUserList(id, num):
     FromData = getFromData(id, num)
     r = requests.post('https://wds.modian.com/ajax_backer_list', data = FromData)
     user = r.text
+    print(user)
     user = eval(user)   # 返回的数据实际是str类型，要转换为字典类型
     user_list = user['data']
     final_list = []
     for user in user_list:
         item = tuple(user.values())
         final_list.append(item)
+    print(final_list)
     return final_list
 
 # 存入数据库
@@ -28,9 +30,9 @@ def insert_by_many(table):
     conn = pymysql.Connect(host='localhost', user='root', passwd='', db='wds', charset='utf8') # 建立连接
     cur = conn.cursor() # 获取游标
     try:
-        sql = "INSERT INTO userlist VALUES('%s', '%s', '%s', '%s', '%s')"
+        sql = 'INSERT INTO userlist values(%s, %s, %s, %s, %s)'
         # 批量插入
-        cur.executemany(sql % table)    # table是list里放的tuple
+        cur.executemany(sql, table)    # table是list里放的tuple
         conn.commit()
     except Exception as e:
         print(e)
