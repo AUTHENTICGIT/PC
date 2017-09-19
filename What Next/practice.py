@@ -1,4 +1,4 @@
-# # import urllib.request
+import urllib.request
 # # import re
 # #
 # # # 全部PNG
@@ -28,31 +28,8 @@
 # html=driver.page_source
 # print(html)
 
-import urllib.request
-from bs4 import BeautifulSoup
-import re
-import pymysql
-
-conn = pymysql.Connect(host='localhost', user='root', passwd='', db='wds', charset='utf8')
-cur = conn.cursor()
-sql = 'INSERT INTO userlist values(%s, %s, %s, %s, %s)'
-
-# 单行插入
-# userlist = ['1442771', 37867.77, '酱油', 'https:\\/\\/u.moimg.net\\/ico\\/1442771_1499254858.jpg', 'https:\\/\\/s.moimg.net\\/new_wds\\/images\\/default-avatar.png']
-# data = tuple(userlist)
-# print(data)
-# cur.execute(sql % data)
-
-# 批量插入
-table = [
-    ('1442771', 37867.77, '红绳会家酱油的', 'https:\\/\\/u.moimg.net\\/ico\\/1442771_1499254858.jpg', 'https:\\/\\/s.moimg.net\\/new_wds\\/images\\/default-avatar.png'),
-    ('1137032', 23107.5, '恩兔恩兔Tanyc', 'https:\\/\\/p.moimg.net\\/ico\\/1137032_20170503_1493802333_4868.jpg', 'https:\\/\\/s.moimg.net\\/new_wds\\/images\\/default-avatar.png'),
-    ('1104581', 18435.54, '一只喜欢赵粤的猫', 'https:\\/\\/u.moimg.net\\/ico\\/1104581_1504268125.jpg', 'https:\\/\\/s.moimg.net\\/new_wds\\/images\\/default-avatar.png'),
-]
-
-cur.executemany(sql, table)
-
-conn.commit()
-cur.close()
-conn.close()
-
+html = 'https://wds.modian.com/show_weidashang_pro/6195#1'
+headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'}
+req = urllib.request.Request(url=html, headers=headers)
+html_data = urllib.request.urlopen(req).read().decode('utf8')
+print(html_data)
