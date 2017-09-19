@@ -1,3 +1,9 @@
+"""
+Created on Sat Sep 19 15:41:35 2017
+
+@author: AUT
+"""
+
 import requests
 import pymysql
 import urllib.request
@@ -29,8 +35,14 @@ def getUserList(id, num):
 
 # 存入数据库
 def insert_by_many(table):
-    conn = pymysql.Connect(host='localhost', user='root', passwd='1234', db='wds', charset='utf8mb4') # 建立连接
-    cur = conn.cursor() # 获取游标
+    # 建立连接
+    conn = pymysql.Connect(host='localhost',
+                           user='root',
+                           passwd='1234',
+                           db='wds',
+                           charset='utf8mb4')
+    # 获取游标
+    cur = conn.cursor()
     try:
         # 检索主键是否已存在，有就累加total_back_number数据，没有就插入
         sql = '''INSERT INTO userlist values(%s, %s, %s, %s, %s) ON DUPLICATE KEY UPDATE total_back_number = total_back_number + values(total_back_number)'''
@@ -61,7 +73,7 @@ def getUrl(html):
 
 def main():
     # html = str(input('Enter Web Address: '))
-    html = 'https://wds.modian.com/show_weidashang_pro/6195#1'
+    html = 'https://wds.modian.com/show_weidashang_pro/4785'
     pro_id, num = getUrl(html)
     userlist = getUserList(pro_id, num)
     insert_by_many(userlist)
