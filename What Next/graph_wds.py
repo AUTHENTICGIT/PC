@@ -46,7 +46,7 @@ conn = pymysql.Connect(host='localhost',
                        charset='utf8mb4')
 cur = conn.cursor()
 # cur.execute("SELECT total_back_number from " + table)
-cur.execute("SELECT total_back_number from zyf")
+cur.execute("SELECT total_back_number from userlist")
 rows = cur.fetchall()
 arr = []
 for r in rows:
@@ -68,12 +68,14 @@ def drawScatter(x, y):
     pyplot.scatter(x, y)
     pyplot.xlabel('Money')
     pyplot.ylabel('People')
-    pyplot.title('Money & People Of ZYF Wds')
+    pyplot.title('Money & People Of ZY Wds')
 
 # 统计每个金额重复出现的次数
 count_times = dict(Counter(arr))
 for k, v in count_times.items():
-    money = k
-    people = v
-    drawScatter(money, people)
+    if not k > 40000.00:
+        money = k
+        people = v
+        drawScatter(money, people)
+
 pyplot.show()
