@@ -28,8 +28,23 @@ import urllib.request
 # html=driver.page_source
 # print(html)
 
-html = 'https://wds.modian.com/show_weidashang_pro/6195#1'
-headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'}
-req = urllib.request.Request(url=html, headers=headers)
-html_data = urllib.request.urlopen(req).read().decode('utf8')
-print(html_data)
+# html = 'https://wds.modian.com/show_weidashang_pro/6195#1'
+# headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'}
+# req = urllib.request.Request(url=html, headers=headers)
+# html_data = urllib.request.urlopen(req).read().decode('utf8')
+# print(html_data)
+
+from matplotlib import pyplot
+
+def drawScatter(x, y):
+    # 创建散点图
+    # 第一个参数为点的横坐标
+    # 第二个参数为点的纵坐标
+    pyplot.scatter(x, y)
+    pyplot.xlabel('Money')
+    pyplot.ylabel('People')
+    pyplot.title('Money & People Of ZY Wds')
+drawScatter(1.66, 2)
+drawScatter(2.66, 10)
+
+pyplot.show()

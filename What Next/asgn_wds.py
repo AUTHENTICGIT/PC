@@ -73,7 +73,7 @@ def getUrl(html):
 
 def main():
     # html = str(input('Enter Web Address: '))
-    html = 'https://wds.modian.com/show_weidashang_pro/4785'
+    html = 'https://wds.modian.com/show_weidashang_pro/3694'
     pro_id, num = getUrl(html)
     userlist = getUserList(pro_id, num)
     insert_by_many(userlist)
