@@ -45,10 +45,8 @@ def drawScatter(x, y):
 
 def main():
     try:
-        # 一般会把通常的语句放在try代码块中
         table = input('请输入要计算的数据库表：')
     except EOFError:
-        # 把错误处理器代码放在except代码块中
         print('Why did you do an EOF on me?')
     except KeyboardInterrupt:
         print('You cancelled the operation.')
