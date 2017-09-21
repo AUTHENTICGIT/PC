@@ -58,6 +58,8 @@ def main():
             print('\n切换到mh数据库表进行查询\n')
         elif table == 'zyf':
             print('\n切换到zyf数据库表进行查询\n')
+        elif table == 'watanabe':
+            print('\n切换到watanabe数据库表进行查询\n')
         else:
             print('\n数据库不存在\n')
 
