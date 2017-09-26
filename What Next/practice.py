@@ -28,23 +28,23 @@ import urllib.request
 # html=driver.page_source
 # print(html)
 
-html = 'https://wds.modian.com/show_weidashang_pro/6195#1'
-headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'}
-req = urllib.request.Request(url=html, headers=headers)
-html_data = urllib.request.urlopen(req).read().decode('utf8')
-print(html_data)
-
-from matplotlib import pyplot
-
-def drawScatter(x, y):
-    # 创建散点图
-    # 第一个参数为点的横坐标
-    # 第二个参数为点的纵坐标
-    pyplot.scatter(x, y)
-    pyplot.xlabel('Money')
-    pyplot.ylabel('People')
-    pyplot.title('Money & People Of ZY Wds')
-drawScatter(1.66, 2)
-drawScatter(2.66, 10)
-
-pyplot.show()
+import os
+import random
+# 代理检验是否可用
+os.chdir(r'C:\Users\XLY-LR\Desktop\scrapy\proxy')
+url = 'https://www.baidu.com'
+fh = open('host.txt', 'r')
+ips = fh.readlines()
+proxys = list()
+for p in ips:
+    ip = p.strip('\n').split('\t')
+    proxy = 'http:\\' + ip[0] + ':' + ip[1]
+    proxies = {'proxy': proxy}
+    proxys.append(proxies)
+# for pro in proxys:
+#     try:
+#         s = requests.get(url, proxies=pro)
+#         # print(s)
+#     except Exception as e:
+#         print(e)
+print(random.choice(proxys))
