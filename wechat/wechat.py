@@ -12,6 +12,6 @@ data = {'cmd':'vote', 'uid':'7'}
 page1 = 'http://www.yindudigital.cn/zj/20170825/?from=singlemessage'
 page2 = 'http://www.yindudigital.cn/zj/cache/wx_config.php'
 vote = 'http://www.yindudigital.cn/zj/20170825/api.php'
-r = requests.get(url=vote, headers=headers, cookies=cookies, data=data)
+r = requests.post(url=vote, headers=headers, cookies=cookies, data=data)
 html = r.text
 print(html)
