@@ -43,7 +43,7 @@ def getContent(url):
         print(page_content_list)
         content_list = []
         for item in page_content_list:
-            content = re.findall(r'<div class="d_post_content j_d_post_content clearfix".*>(.*)</div>', item)
+            content = item.get_text()[8:-1]
             content_list.append(content)
         print(content_list)
     except UnicodeEncodeError as reason:
@@ -56,8 +56,10 @@ def main():
         for i in range(20):
             name = title[i]
             url = 'http://tieba.baidu.com' + title_list[i]
-            print(name, url)
-        getContent('http://tieba.baidu.com' + title_list[0])
+            print(i+1, name, url)
+        # getContent('http://tieba.baidu.com' + title_list[0])
+        inp_no = int(input('->请输入要查看帖子的编号：'))
+        getContent('http://tieba.baidu.com' + title_list[inp_no-1])
     except KeyboardInterrupt as reason:
         print('程序结束！')
 
