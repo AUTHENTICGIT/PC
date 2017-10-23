@@ -46,8 +46,7 @@ class weiboLogin:
             rsakv = data['rsakv']
             return servertime, nonce, pubkey, rsakv
         except:
-            print
-            'Get severtime error!'
+            print('Get severtime error!')
             return None
 
 
@@ -113,21 +112,17 @@ class weiboLogin:
         )
         result = urllib2.urlopen(req)
         text = result.read()
-        print
-        text
+        print(text)
         # 还没完！！！这边有一个重定位网址，包含在脚本中，获取到之后才能真正地登陆
         p = re.compile('location\.replace[\'"](.∗?)[\'"]')
         try:
             login_url = p.search(text).group(1)
-            print
-            login_url
+            print(login_url)
             # 由于之前的绑定，cookies信息会直接写入
             urllib2.urlopen(login_url)
-            print
-            "Login success!"
+            print("Login success!")
         except:
-            print
-            'Login error!'
+            print('Login error!')
             return 0
 
             # 访问主页，把主页写入到文件中
