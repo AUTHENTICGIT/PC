@@ -88,7 +88,9 @@ class Driver:
             sleep(3)
             # 好友发布
             self.driver.find_element_by_xpath("/html/body/div[10]/div[2]/div[3]/div/div[2]/div/div[2]/div/div[1]/div/div[2]/div[1]/a").click()
-            print(">>>转发第" + str(i+1) +"条>>>")
+            # print(">>>转发第" + str(i+1) +"条>>>")
+            number = str(i+1)
+            print(">>>转发第{}条>>>".format(number))
             sleep(3)
         print("\n脚本结束！共转发" + str(i+1) +"条微博")
     def close(self):
