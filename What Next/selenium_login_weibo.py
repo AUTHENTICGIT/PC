@@ -5,8 +5,8 @@
 #     def __init__(self):
 #         self.driver = webdriver.Chrome()
 #         self.url = 'https://weibo.com/'
-#         self.account = 'leogwork@gmail.com'
-#         self.pwd = 'ksxyhzgdnz007'
+#         self.account = 'fabkebalabala@gmail.com'
+#         self.pwd = 'fakebalabala'
 #     def open(self):
 #         self.driver.get(self.url)
 #         sleep(10)
