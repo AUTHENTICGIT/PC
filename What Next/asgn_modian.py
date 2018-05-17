@@ -105,7 +105,7 @@ def getQueryString():
     return QueryString
 
 def main():
-    pass
+    requests.post('https://zhongchou.modian.com/realtime/ajax_dialog_user_list?jsonpcallback=jQuery111105399095815167287_1526554345136&origin_id=16056&type=backer_list&page=1&page_size=20&cate=2&_=1526554345145')
 
 if __name__ == '__main__':
     main()
