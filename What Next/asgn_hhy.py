@@ -55,7 +55,7 @@ def getContent(url, page):
 
 def main():
     try:
-        keyword = input('->请输入一个正确的贴吧名称：')
+        keyword = input('''->请输入一个正确的贴吧名称（1 生个女孩 2 塞纳河路边社）：''')
         wantnumber = int(input('->你想获取几页内容（1~10000）？'))
         if keyword == '1':
             keyword = '生个女孩'
