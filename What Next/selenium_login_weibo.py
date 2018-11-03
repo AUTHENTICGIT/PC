@@ -36,7 +36,7 @@ class Driver:
         self.driver = webdriver.Chrome()
         self.url = 'https://weibo.com/'
         self.account = 'leogwork@gmail.com'
-        self.pwd = 'ksxyhzgdnz007'
+        self.pwd = 'password'
     def open(self):
         self.driver.get(self.url)
         sleep(20)
