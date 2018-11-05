@@ -1,3 +1,21 @@
+# def say_hi(name):
+#     print('Hello, my name is', name)
+# say_hi('Swaroop')
+#
+# class Person:
+#     def say_hi(self, name):
+#         print('Hello, my name is', name)
+# p = Person()
+# p.say_hi('Swaroop')
+#
+# class Personn:
+#     def __init__(self, name):
+#         self.name = name
+#     def say_hi(self):
+#         print('Hello, my name is', self.name)
+# pp = Personn('Swaroop')
+# pp.say_hi()
+
 # 实例
 class Person:
     def __init__(self, name):
