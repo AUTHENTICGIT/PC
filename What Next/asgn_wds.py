@@ -44,7 +44,7 @@ def insert_by_many(table):
     # 获取游标
     cur = conn.cursor()
     try:
-        # 检索主键是否已存在，有就累加total_back_number数据，没有就插入
+        # 检索主键是否已存在，有就累加total_back_number数据，没有就插入 https://blog.csdn.net/qq_22771739/article/details/84668620
         sql = '''INSERT INTO userlist values(%s, %s, %s, %s, %s) ON DUPLICATE KEY UPDATE total_back_number = total_back_number + values(total_back_number)'''
         # 批量插入
         res = cur.executemany(sql, table)    # table是list里放的tuple
